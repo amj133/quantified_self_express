@@ -50,4 +50,22 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('GET /api/v1/foods/:id', function() {
+    it('should return given food', function() {
+      return chai.request(server)
+      .get('/api/v1/foods/2')
+      .then((response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('Array');
+
+        response.body.should.have.property('id');
+        response.body.id.should.equal(1);
+        response.body.should.have.property('name');
+        response.body.name.should.equal('Banana');
+
+      })
+    })
+  })
 })

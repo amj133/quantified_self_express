@@ -6,6 +6,26 @@ const findAll = () => {
   return database.raw('SELECT * FROM foods');
 }
 
+const find = (id) => {
+  return database.raw('SELECT * FROM foods WHERE foods.id = ?', [id])
+}
+
+const create = (name, calories) => {
+  return database.raw('INSERT INTO foods (name, calories) VALUES (?, ?) RETURNING id, name, calories', [name, calories])
+}
+
+const update = (name, calories, id) => {
+  return database.raw('UPDATE foods SET name = ?, calories = ? WHERE foods.id = ? RETURNING id, name, calories', [name, calories, id])
+}
+
+const destroy = (id) => {
+  return database.raw('DELETE FROM foods WHERE foods.id = ?', [id])
+}
+
 module.exports = {
-  findAll
+  findAll,
+  find,
+  create,
+  update,
+  destroy
 }

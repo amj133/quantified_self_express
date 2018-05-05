@@ -8,4 +8,6 @@ router.get('/', foodsController.getFoods)
 
 router.get('/:id', foodsController.getFood)
 
+router.post('/', foodsController.createFood)
+
 module.exports = router;

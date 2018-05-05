@@ -10,7 +10,12 @@ const find = (id) => {
   return database.raw('SELECT * FROM foods WHERE foods.id = ?', [id])
 }
 
+const create = (name, calories) => {
+  return database.raw('INSERT INTO foods (name, calories) VALUES (?, ?) RETURNING id, name, calories', [name, calories])
+}
+
 module.exports = {
   findAll,
-  find
+  find,
+  create
 }

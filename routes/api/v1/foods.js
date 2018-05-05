@@ -5,9 +5,8 @@ const Food = require('../../../models/food')
 const foodsController = require('../../../lib/controllers/foods')
 
 router.get('/', foodsController.getFoods)
-
 router.get('/:id', foodsController.getFood)
-
 router.post('/', foodsController.createFood)
+router.patch('/:id', foodsController.updateFood)
 
 module.exports = router;

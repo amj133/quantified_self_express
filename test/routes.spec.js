@@ -7,6 +7,8 @@ const environment = 'test';
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
+const Food = require('../models/food')
+
 chai.use(chaiHttp);
 
 describe('API Routes', function() {
@@ -79,19 +81,27 @@ describe('API Routes', function() {
       }
 
       return chai.request(server)
-      .post('/api/v1/foods')
-      .send(payload)
-      .then((response) => {
-        response.should.have.status(200);
-        response.should.be.json;
-        response.body.should.be.a('Array');
+        .post('/api/v1/foods')
+        .send(payload)
+        .then((response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.body.should.be.a('Array');
 
-        response.body[0].should.have.property('id');
-        response.body[0].should.have.property('name');
-        response.body[0].name.should.equal('Gogurt');
-        response.body[0].should.have.property('calories');
-        response.body[0].calories.should.equal(220);
-      })
+          response.body[0].should.have.property('id');
+          response.body[0].should.have.property('name');
+          response.body[0].name.should.equal('Gogurt');
+          response.body[0].should.have.property('calories');
+          response.body[0].calories.should.equal(220);
+          // let newFood = Food.find(4)
+          //                 .then(function(food) {
+          //                   return food.rows
+          //                 })
+          // pry = require("pryjs")
+          // eval(pry.it)
+          // newFood.id.should.equal(4);
+          // newFood.name.should.equal('Gogurt');
+        })
     })
 
     it('should return 404 with no name', function () {
@@ -126,7 +136,7 @@ describe('API Routes', function() {
   })
 
   describe('PATCH /api/v1/foods/:id', function() {
-    xit('updates food and returns updated', function() {
+    it('updates food and returns updated', function() {
       let payload = {
         "food": {
           "name": "Gogurt",
@@ -135,15 +145,17 @@ describe('API Routes', function() {
       }
 
       return chai.request(server)
-      .post('/api/v1/foods')
+      .patch('/api/v1/foods/2')
       .send(payload)
       .then((response) => {
+        let updatedFood = Food.find(2)
+
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('Array');
 
         response.body[0].should.have.property('id');
-        response.body[0].id.should.equal(1);
+        response.body[0].id.should.equal(2);
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('Gogurt');
         response.body[0].should.have.property('calories');

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const Food = require('../../../models/food')
-const foodsController = require('../../../lib/controllers/foods')
+const foodsController = require('../../../lib/controllers/foods_controller')
 
 router.get('/', foodsController.getFoods)
 router.get('/:id', foodsController.getFood)

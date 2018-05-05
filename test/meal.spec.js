@@ -7,8 +7,6 @@ const environment = 'test';
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
-const Meal = require('../models/meal')
-
 chai.use(chaiHttp);
 
 describe('API Routes', function() {
@@ -54,6 +52,9 @@ describe('API Routes', function() {
         response.body[2].id.should.equal(3);
         response.body[2].name.should.equal('Dinner');
         response.body[2].food[0].name.should.equal('Steak');
+      })
+      .catch((error) => {
+        throw(error)
       })
     })
   })

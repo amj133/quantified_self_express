@@ -41,6 +41,8 @@ describe('API Routes', function() {
         response.body[0].id.should.equal(1);
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('Banana');
+        response.body[0].should.have.property('calories');
+        response.body[0].calories.should.equal(140);
 
         response.body[2].id.should.equal(3);
         response.body[2].name.should.equal('Advocado');
@@ -49,7 +51,7 @@ describe('API Routes', function() {
   })
 
   describe('GET /api/v1/foods/:id', function() {
-    xit('should return given food', function() {
+    it('should return given food', function() {
       return chai.request(server)
       .get('/api/v1/foods/2')
       .then((response) => {
@@ -61,12 +63,14 @@ describe('API Routes', function() {
         response.body[0].id.should.equal(2);
         response.body[0].should.have.property('name');
         response.body[0].name.should.equal('Twizzler');
+        response.body[0].should.have.property('calories');
+        response.body[0].calories.should.equal(240);
       })
     })
   })
 
   describe('POST /api/v1/foods/', function () {
-    it('should create and return food', function () {
+    xit('should create and return food', function () {
       let payload = {
         "food": {
           "name": "Gogurt",

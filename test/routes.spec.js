@@ -136,6 +136,7 @@ describe('API Routes', function() {
   })
 
   describe('PATCH /api/v1/foods/:id', function() {
+    this.timeout(0);
     it('updates food and returns updated', function() {
       let payload = {
         "food": {
@@ -148,8 +149,10 @@ describe('API Routes', function() {
       .patch('/api/v1/foods/2')
       .send(payload)
       .then((response) => {
-        let updatedFood = Food.find(2)
-
+        // let updatedFood = Food.find(2)
+        //                     .then(function(food) {
+        //                       return food.rows
+        //                     })
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('Array');
@@ -160,6 +163,36 @@ describe('API Routes', function() {
         response.body[0].name.should.equal('Gogurt');
         response.body[0].should.have.property('calories');
         response.body[0].calories.should.equal(220);
+      })
+    })
+
+    it('returns 400 with no name', function() {
+      let payload = {
+        "food": {
+          "calories": 220
+        }
+      }
+
+      return chai.request(server)
+      .patch('/api/v1/foods/2')
+      .send(payload)
+      .then((response) => {
+        response.should.have.status(400);
+      })
+    })
+
+    it('returns 400 with no calories', function() {
+      let payload = {
+        "food": {
+          "name": "Gogurt"
+        }
+      }
+
+      return chai.request(server)
+      .patch('/api/v1/foods/2')
+      .send(payload)
+      .then((response) => {
+        response.should.have.status(400);
       })
     })
   })

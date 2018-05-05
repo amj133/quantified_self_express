@@ -18,10 +18,6 @@ const update = (name, calories, id) => {
   return database.raw('UPDATE foods SET name = ?, calories = ? WHERE foods.id = ? RETURNING id, name, calories', [name, calories, id])
 }
 
-// UPDATE Customers
-// SET ContactName = 'Alfred Schmidt', City= 'Frankfurt'
-// WHERE CustomerID = 1;
-
 module.exports = {
   findAll,
   find,

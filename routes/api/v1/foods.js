@@ -6,4 +6,6 @@ const foodsController = require('../../../lib/controllers/foods')
 
 router.get('/', foodsController.getFoods)
 
+router.get('/:id', foodsController.getFood)
+
 module.exports = router;

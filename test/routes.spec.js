@@ -45,13 +45,12 @@ describe('API Routes', function() {
         response.body[2].id.should.equal(3);
         response.body[2].name.should.equal('Advocado');
       })
-      .catch((error) => {
-        throw error;
-      })
     })
   })
 
   describe('GET /api/v1/foods/:id', function() {
+    this.timeout(0);
+
     it('should return given food', function() {
       return chai.request(server)
       .get('/api/v1/foods/2')
@@ -60,12 +59,13 @@ describe('API Routes', function() {
         response.should.be.json;
         response.body.should.be.a('Array');
 
-        response.body.should.have.property('id');
-        response.body.id.should.equal(1);
-        response.body.should.have.property('name');
-        response.body.name.should.equal('Banana');
-
+        response.body[0].should.have.property('id');
+        response.body[0].id.should.equal(2);
+        response.body[0].should.have.property('name');
+        response.body[0].name.should.equal('Twizzler');
       })
     })
   })
+
+  describe
 })

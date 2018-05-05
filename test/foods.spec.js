@@ -136,7 +136,6 @@ describe('API Routes', function() {
   })
 
   describe('PATCH /api/v1/foods/:id', function() {
-    this.timeout(0);
     it('updates food and returns updated', function() {
       let payload = {
         "food": {
@@ -198,7 +197,6 @@ describe('API Routes', function() {
   })
 
   describe("DELETE /api/v1/foods/:id", function() {
-    this.timeout(0);
     xit("deletes the food", function() {
       chai.request(server)
       .delete('/api/v1/foods/2')

@@ -7,12 +7,12 @@ const environment = 'test';
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
-const Food = require('../models/food')
 const Meal = require('../models/meal')
 
 chai.use(chaiHttp);
 
 describe('API Routes', function() {
+  this.timeout(0);
   before((done) => {
     database.migrate.latest()
     .then(() => done())

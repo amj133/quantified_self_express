@@ -196,4 +196,37 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe("DELETE /api/v1/foods/:id", function() {
+    this.timeout(0);
+    xit("deletes the food", function() {
+      chai.request(server)
+      .delete('/api/v1/foods/2')
+
+      pry = require("pryjs")
+      eval(pry.it)
+
+      return chai.request(server)
+      .get('/api/v1/foods')
+      .then((response) => {
+        response.body.length.should.equal(2);
+      })
+    })
+
+    it("returns 204", function() {
+      return chai.request(server)
+      .delete('/api/v1/foods/2')
+      .then((response) => {
+        response.should.have.status(204);
+      })
+    })
+
+    it("returns a 404 if food not found", function() {
+      return chai.request(server)
+      .delete('/api/v1/foods/4')
+      .then((response) => {
+        response.should.have.status(404);
+      })
+    })
+  })
 })

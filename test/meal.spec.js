@@ -53,9 +53,6 @@ describe('API Routes', function() {
         response.body[2].name.should.equal('Dinner');
         response.body[2].food[0].name.should.equal('Steak');
       })
-      .catch((error) => {
-        throw(error)
-      })
     })
   })
 })

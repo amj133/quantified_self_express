@@ -34,11 +34,11 @@ describe('class methods', function() {
     .done();
   });
 
-  describe('#findFoodMeals', function() {
+  describe('#find', function() {
     it('returns an array of food_meals', function() {
       let mealId = 1;
 
-      FoodMeal.findFoodMeals(mealId)
+      FoodMeal.find(mealId)
       .then((response) => {
         let foodIds = response.rows;
 
@@ -52,18 +52,6 @@ describe('class methods', function() {
         foodIds[1].food_id.should.equal(2);
         foodIds[1].meal_id.should.equal(1);
       })
-    })
-  })
-
-  describe('#getFoodIds', function() {
-    xit('returns array of assoc. food ids', function() {
-      let mealId = 1;
-
-      let foodIds = FoodMeal.getFoodIds(mealId);
-
-      foodIds.should.be.a('Array');
-      foodIds[0].should.equal(1);
-      foodIds[1].should.equal(2);
     })
   })
 })

@@ -9,7 +9,7 @@ class FoodMeal {
     this.mealId = mealId;
   }
 
-  static findFoodMeals(mealId) {
+  static find(mealId) {
     return database.raw('SELECT * FROM food_meals WHERE food_meals.meal_id = ?', [mealId])
   }
 

@@ -30,6 +30,7 @@ describe('API Routes', function() {
   });
 
   describe('GET /api/v1/meals', function() {
+    this.timeout(0);
     it('should return all meals with foods', function() {
       return chai.request(server)
       .get('/api/v1/meals')
@@ -37,6 +38,9 @@ describe('API Routes', function() {
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('Array');
+
+        pry = require("pryjs")
+        eval(pry.it)
 
         response.body[0].should.have.property('id');
         response.body[0].id.should.equal(1);

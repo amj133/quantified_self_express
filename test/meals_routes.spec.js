@@ -44,7 +44,7 @@ describe('API Routes', function() {
         response.body[0].name.should.equal('Breakfast');
         response.body[0].should.have.property('foods');
 
-        response.body[0].foods.be.a('Array');
+        response.body[0].foods.should.be.a('Array');
         response.body[0].foods[0].id.should.equal(1);;
         response.body[0].foods[0].name.should.equal('Banana');;
         response.body[0].foods[0].calories.should.equal(140);;

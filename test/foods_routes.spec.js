@@ -53,7 +53,7 @@ describe('API Routes', function() {
   })
 
   describe('GET /api/v1/foods/:id', function() {
-    xit('should return given food', function() {
+    it('should return given food', function() {
       return chai.request(server)
       .get('/api/v1/foods/2')
       .then((response) => {

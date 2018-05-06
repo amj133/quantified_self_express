@@ -10,6 +10,6 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  let dropQuery = `DROP TABLE foods`
+  let dropQuery = `DROP TABLE meals`
   return knex.raw(dropQuery)
 };

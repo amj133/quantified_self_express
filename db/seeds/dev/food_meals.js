@@ -13,6 +13,14 @@ exports.seed = function(knex, Promise) {
       knex.raw(
         'INSERT INTO food_meals (food_id, meal_id) VALUES (?, ?)',
         [3, 2]
+      ),
+      knex.raw(
+        'INSERT INTO food_meals (food_id, meal_id) VALUES (?, ?)',
+        [1, 3]
+      ),
+      knex.raw(
+        'INSERT INTO food_meals (food_id, meal_id) VALUES (?, ?)',
+        [2, 4]
       )
     ])
   })

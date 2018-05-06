@@ -1,0 +1,54 @@
+const chai = require('chai');
+const should = chai.should();
+const chaiHttp = require('chai-http');
+const server = require('../app.js');
+
+const environment = 'test';
+const configuration = require('../knexfile')[environment];
+const database = require('knex')(configuration);
+
+const FoodMeal = require('../models/food_meal.js')
+
+chai.use(chaiHttp);
+
+describe('class methods', function() {
+  this.timeout(0);
+  before((done) => {
+    database.migrate.latest()
+    .then(() => done())
+    .catch((error) => {
+      throw error;
+    })
+    .done();
+  });
+
+  beforeEach((done) => {
+    database.seed.run()
+    .then(() => done())
+    .catch((error) => {
+      throw error;
+    })
+    .done();
+  });
+
+  describe('#getFoodIds', function() {
+    it('returns an array of assoc. food ids', function() {
+      let mealId = 1
+
+      return FoodMeal.getFoodIds(mealId)
+      .then((response) => {
+        let foodIds = response.rows
+
+        foodIds.should.be.a('Array');
+        foodIds.length.should.equal(2);
+        foodIds[0].id.should.equal(1);
+        foodIds[0].food_id.should.equal(1);
+        foodIds[0].meal_id.should.equal(1);
+
+        foodIds[1].id.should.equal(2);
+        foodIds[1].food_id.should.equal(2);
+        foodIds[1].meal_id.should.equal(1);
+      })
+    })
+  })
+})

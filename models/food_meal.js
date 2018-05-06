@@ -3,7 +3,10 @@ const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 
 class FoodMeal {
-  constructor () {
+  constructor (id, foodId, mealId) {
+    this.id = id;
+    this.foodId = foodId;
+    this.mealId = mealId;
   }
 
   static findFoodMeals(mealId) {

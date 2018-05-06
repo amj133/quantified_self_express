@@ -5,10 +5,17 @@ const database = require('knex')(configuration)
 const Food = require('./food.js')
 const FoodMeal = require('./food_meal.js')
 
-const findAll = () => {
-  return database.raw('SELECT * FROM meals')
+class Meal {
+  constructor(id, name) {
+    this.id = id;
+    this.name = name;
+    this.foods = []
+  }
+
+  static findAll() {
+    return database.raw('SELECT * FROM meals')
+  }
 }
 
-module.exports = {
-  findAll
-}
+
+module.exports = Meal

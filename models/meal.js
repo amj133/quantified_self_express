@@ -3,6 +3,7 @@ const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 
 const Food = require('./food.js')
+const FoodMeal = require('./food_meal.js')
 
 const findAll = () => {
   return database.raw('SELECT * FROM meals')

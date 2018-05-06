@@ -1,3 +1,5 @@
+// import FoodMeal from "../models/food_meal"
+
 const chai = require('chai');
 const should = chai.should();
 const chaiHttp = require('chai-http');
@@ -7,7 +9,8 @@ const environment = 'test';
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
-const FoodMeal = require('../models/food_meal.js')
+const FoodMeal = require('../models/food_meal')
+// import { FoodMeal } from "../models/food_meal"
 
 chai.use(chaiHttp);
 
@@ -35,7 +38,7 @@ describe('class methods', function() {
     it('returns an array of food_meals', function() {
       let mealId = 1;
 
-      FoodMeal.findFoodMeals()
+      FoodMeal.findFoodMeals(mealId)
       .then((response) => {
         let foodIds = response.rows;
 

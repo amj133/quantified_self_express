@@ -16,6 +16,10 @@ class Meal {
     return database.raw('SELECT * FROM meals')
   }
 
+  static find(id) {
+    return database.raw('SELECT * FROM meals WHERE meals.id = ?', [id])
+  }
+
   async getFoods() {
     const rawFoodData = await database.raw('SELECT foods.id, foods.name, foods.calories FROM foods INNER JOIN food_meals ON foods.id = food_meals.food_id WHERE food_meals.meal_id = ?', [this.id])
 

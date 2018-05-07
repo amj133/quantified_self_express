@@ -32,7 +32,6 @@ describe('API Routes', function() {
   });
 
   describe('instance methods', function() {
-    this.timeout(0);
     describe('#getFoods', function(){
       it('should populate meal with foods', function() {
         meal = new Meal(1, "Breakfast")
@@ -40,14 +39,15 @@ describe('API Routes', function() {
         meal.foods.should.deep.equal([])
 
         meal.getFoods()
+          .then((response) => {
+            meal.foods[0].id.should.equal(1)
+            meal.foods[0].name.should.equal('Banana')
+            meal.foods[0].calories.should.equal(140)
 
-        meal.foods[0].id.should.equal(1)
-        meal.foods[0].name.should.equal('Banana')
-        meal.foods[0].calories.should.equal(140)
-
-        meal.foods[1].id.should.equal(2)
-        meal.foods[1].name.should.equal('Twizzler')
-        meal.foods[1].calories.should.equal(240)
+            meal.foods[1].id.should.equal(2)
+            meal.foods[1].name.should.equal('Twizzler')
+            meal.foods[1].calories.should.equal(240)
+          })
       })
     })
   })

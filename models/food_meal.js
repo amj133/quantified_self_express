@@ -13,6 +13,10 @@ class FoodMeal {
     return database.raw('SELECT * FROM food_meals WHERE food_meals.meal_id = ?', [mealId])
   }
 
+  static create(foodId, mealId) {
+    return database.raw('INSERT INTO food_meals (food_id, meal_id) VALUES (?, ?)', [foodId, mealId])
+  }
+
 }
 
 module.exports = FoodMeal

@@ -60,4 +60,28 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('GET /api/v1/meals/:meal_id/foods', function() {
+    it('returns all foods for given meal', function() {
+      return chai.request(server)
+      .get('/api/v1/meals/1/foods')
+      .then((response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.should.be.a('Array');
+
+        var foods = response.body.sort(function(a, b) {
+          return(a.id > b.id ? 1 : -1)
+        })
+
+        foods[0].id.should.equal(1);
+        foods[0].name.should.equal('Banana');
+        foods[0].calories.should.equal('140');
+
+        foods[1].id.should.equal(2);
+        foods[1].name.should.equal('Twizzler');
+        foods[1].calories.should.equal('240');
+      })
+    })
+  })
 })

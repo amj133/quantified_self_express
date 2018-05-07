@@ -12,6 +12,10 @@ class Meal {
   static findAll() {
     return database.raw('SELECT * FROM meals')
   }
+
+  getFoods() {
+    
+  }
 }
 
 

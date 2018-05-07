@@ -39,8 +39,8 @@ describe('API Routes', function() {
         response.should.be.json;
         response.body.should.be.a('Array');
 
-        pry = require("pryjs")
-        eval(pry.it)
+        // pry = require("pryjs")
+        // eval(pry.it)
 
         response.body[0].should.have.property('id');
         response.body[0].id.should.equal(1);

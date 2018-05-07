@@ -39,21 +39,25 @@ describe('API Routes', function() {
         response.should.be.json;
         response.body.should.be.a('Array');
 
-        response.body[0].should.have.property('id');
-        response.body[0].id.should.equal(1);
-        response.body[0].should.have.property('name');
-        response.body[0].name.should.equal('Banana');
-        response.body[0].should.have.property('calories');
-        response.body[0].calories.should.equal(140);
+        var foods = response.body.sort(function(a, b) {
+          return(a.id > b.id ? 1 : -1)
+        })
 
-        response.body[2].id.should.equal(3);
-        response.body[2].name.should.equal('Advocado');
+        foods[0].should.have.property('id');
+        foods[0].id.should.equal(1);
+        foods[0].should.have.property('name');
+        foods[0].name.should.equal('Banana');
+        foods[0].should.have.property('calories');
+        foods[0].calories.should.equal(140);
+
+        foods[2].id.should.equal(3);
+        foods[2].name.should.equal('Advocado');
       })
     })
   })
 
   describe('GET /api/v1/foods/:id', function() {
-    xit('should return given food', function() {
+    it('should return given food', function() {
       return chai.request(server)
       .get('/api/v1/foods/2')
       .then((response) => {
@@ -136,7 +140,6 @@ describe('API Routes', function() {
   })
 
   describe('PATCH /api/v1/foods/:id', function() {
-    this.timeout(0);
     it('updates food and returns updated', function() {
       let payload = {
         "food": {
@@ -198,7 +201,6 @@ describe('API Routes', function() {
   })
 
   describe("DELETE /api/v1/foods/:id", function() {
-    this.timeout(0);
     xit("deletes the food", function() {
       chai.request(server)
       .delete('/api/v1/foods/2')

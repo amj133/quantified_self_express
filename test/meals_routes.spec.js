@@ -43,9 +43,6 @@ describe('API Routes', function() {
           return(a.id > b.id ? 1 : -1)
         })
 
-        // pry = require("pryjs")
-        // eval(pry.it)
-
         meals[0].should.have.property('id');
         meals[0].id.should.equal(1);
         meals[0].should.have.property('name');

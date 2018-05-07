@@ -40,12 +40,12 @@ describe('API Routes', function() {
 
         return meal.getFoods()
           .then((response) => {
-          meal.foods[0].id.should.equal(1)
-          meal.foods[0].name.should.equal('Banana')
-          meal.foods[0].calories.should.equal(140)
-          meal.foods[1].id.should.equal(2)
-          meal.foods[1].name.should.equal('Twizzler')
-          meal.foods[1].calories.should.equal(240)
+            meal.foods[0].id.should.equal(1)
+            meal.foods[0].name.should.equal('Banana')
+            meal.foods[0].calories.should.equal(140)
+            meal.foods[1].id.should.equal(2)
+            meal.foods[1].name.should.equal('Twizzler')
+            meal.foods[1].calories.should.equal(240)
           })
       })
     })
@@ -56,8 +56,8 @@ describe('API Routes', function() {
       it('returns meal with id ', function() {
         return Meal.find(2)
           .then((meal) => {
-          meal.rows[0].id.should.equal(2)
-          meal.rows[0].name.should.equal('Lunch')
+            meal.rows[0].id.should.equal(2)
+            meal.rows[0].name.should.equal('Lunch')
           })
       })
     })

@@ -84,4 +84,16 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('POST /api/v1/meals/:meal_id/foods/:id', function() {
+    it('associates given food with given meal', function() {
+      return chai.request(server)
+      .post('/api/v1/meals/2/foods/1')
+      .then((response) => {
+        response.should.have.status(201);
+        response.should.be.json;
+        response.body.message.should.equal('Successfully add Banana to Lunch');
+      })
+    })
+  })
 })

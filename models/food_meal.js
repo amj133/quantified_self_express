@@ -13,7 +13,7 @@ class FoodMeal {
     return database.raw('SELECT * FROM food_meals')
   }
 
-  static find(mealId) {
+  static findByMeal(mealId) {
     return database.raw('SELECT * FROM food_meals WHERE food_meals.meal_id = ?', [mealId])
   }
 

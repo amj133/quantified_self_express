@@ -96,5 +96,21 @@ describe('API Routes', function() {
         response.body.message.should.equal('Successfully added Banana to Lunch');
       })
     })
+
+    it('returns a 404 if meal not found', function() {
+      return chai.request(server)
+      .post('/api/v1/meals/8/foods/1')
+      .then((response) => {
+        response.should.have.status(404);
+      })
+    })
+
+    it('returns a 404 if food not found', function() {
+      return chai.request(server)
+      .post('/api/v1/meals/2/foods/8')
+      .then((response) => {
+        response.should.have.status(404);
+      })
+    })
   })
 })

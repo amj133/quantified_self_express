@@ -90,21 +90,13 @@ describe('API Routes', function() {
         .then((response) => {
           response.should.have.status(200);
           response.should.be.json;
-          response.body.should.be.a('Array');
+          response.body.should.be.a('Object');
 
-          response.body[0].should.have.property('id');
-          response.body[0].should.have.property('name');
-          response.body[0].name.should.equal('Gogurt');
-          response.body[0].should.have.property('calories');
-          response.body[0].calories.should.equal(220);
-          // let newFood = Food.find(4)
-          //                 .then(function(food) {
-          //                   return food.rows
-          //                 })
-          // pry = require("pryjs")
-          // eval(pry.it)
-          // newFood.id.should.equal(4);
-          // newFood.name.should.equal('Gogurt');
+          response.body.should.have.property('id');
+          response.body.should.have.property('name');
+          response.body.name.should.equal('Gogurt');
+          response.body.should.have.property('calories');
+          response.body.calories.should.equal(220);
         })
     })
 
@@ -152,10 +144,6 @@ describe('API Routes', function() {
       .patch('/api/v1/foods/2')
       .send(payload)
       .then((response) => {
-        // let updatedFood = Food.find(2)
-        //                     .then(function(food) {
-        //                       return food.rows
-        //                     })
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.a('Array');

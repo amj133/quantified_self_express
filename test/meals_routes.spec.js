@@ -113,4 +113,32 @@ describe('API Routes', function() {
       })
     })
   })
+
+  describe('DELETE /api/v1/meals/:meal_id/foods/:id', function() {
+    it('deletes association of food and meal', function() {
+      return chai.request(server)
+      .delete('/api/v1/meals/2/foods/1')
+      .then((response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.body.message.should.equal('Successfully deleted Banana from Lunch');
+      })
+    })
+
+    it('returns a 404 if meal not found', function() {
+      return chai.request(server)
+      .post('/api/v1/meals/8/foods/1')
+      .then((response) => {
+        response.should.have.status(404);
+      })
+    })
+
+    it('returns a 404 if food not found', function() {
+      return chai.request(server)
+      .post('/api/v1/meals/2/foods/8')
+      .then((response) => {
+        response.should.have.status(404);
+      })
+    })
+  })
 })

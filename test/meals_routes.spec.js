@@ -62,15 +62,17 @@ describe('API Routes', function() {
   })
 
   describe('GET /api/v1/meals/:meal_id/foods', function() {
-    it('returns all foods for given meal', function() {
+    it('returns meal and its foods', function() {
       return chai.request(server)
       .get('/api/v1/meals/1/foods')
       .then((response) => {
         response.should.have.status(200);
         response.should.be.json;
-        response.body.should.be.a('Array');
 
-        var foods = response.body.sort(function(a, b) {
+        response.body.id.should.equal(1)
+        response.body.name.should.equal("Breakfast")
+
+        var foods = response.body.foods.sort(function(a, b) {
           return(a.id > b.id ? 1 : -1)
         })
 

@@ -11,7 +11,7 @@ const Meal = require('../models/meal')
 
 chai.use(chaiHttp);
 
-describe('API Routes', function() {
+describe('Methods', function() {
   this.timeout(0);
   before((done) => {
     database.migrate.latest()
@@ -59,6 +59,16 @@ describe('API Routes', function() {
             meal.rows[0].id.should.equal(2)
             meal.rows[0].name.should.equal('Lunch')
           })
+      })
+    })
+
+    describe('#findAll', function() {
+      it('returns all meals', async function() {
+        const rawMeals = await Meal.findAll()
+
+        rawMeals.rows.length.should.equal(4)
+        rawMeals.rows[0].name.should.equal('Breakfast')
+        rawMeals.rows[3].name.should.equal('Snack')
       })
     })
   })

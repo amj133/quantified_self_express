@@ -56,7 +56,7 @@ describe('class methods', function() {
   })
 
   describe('#create', function(){
-    it('creates food', async function() {
+    it('creates and returns food', async function() {
       const rawFoods = await Food.findAll()
 
       rawFoods.rows.length.should.equal(3)
@@ -71,7 +71,7 @@ describe('class methods', function() {
   })
 
   describe('#update', function(){
-    it('updates food', async function() {
+    it('updates and returns food', async function() {
       const rawFoods = await Food.findAll()
 
       rawFoods.rows.length.should.equal(3)

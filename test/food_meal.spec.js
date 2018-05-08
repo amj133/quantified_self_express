@@ -10,7 +10,6 @@ const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
 const FoodMeal = require('../models/food_meal')
-// import { FoodMeal } from "../models/food_meal"
 
 chai.use(chaiHttp);
 
@@ -34,11 +33,21 @@ describe('class methods', function() {
     .done();
   });
 
-  describe('#find', function() {
+  describe('#findAll', function() {
+    it('returns all food_meals', async function() {
+      const rawFoodMeals = await FoodMeal.findAll()
+
+      rawFoodMeals.rows.length.should.equal(5)
+      rawFoodMeals.rows[0].id.should.equal(1)
+      rawFoodMeals.rows[4].id.should.equal(5)
+    })
+  })
+
+  describe('#findByMeal', function() {
     it('returns an array of food_meals', function() {
       let mealId = 1;
 
-      return FoodMeal.find(mealId)
+      return FoodMeal.findByMeal(mealId)
       .then((response) => {
         let foodIds = response.rows;
 
@@ -60,14 +69,14 @@ describe('class methods', function() {
       let mealId = 2;
       let foodId = 1;
 
-      const foodMeal = await FoodMeal.find(2)
+      const foodMeal = await FoodMeal.findByMeal(2)
 
       foodMeal.rows.length.should.equal(1)
       foodMeal.rows[0].food_id.should.equal(3)
       foodMeal.rows[0].meal_id.should.equal(2)
 
       await FoodMeal.create(foodId, mealId)
-      const foodMealUpdated = await FoodMeal.find(2)
+      const foodMealUpdated = await FoodMeal.findByMeal(2)
 
       foodMealUpdated.rows.length.should.equal(2)
       foodMealUpdated.rows[1].food_id.should.equal(1)

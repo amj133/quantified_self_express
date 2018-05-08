@@ -90,9 +90,10 @@ describe('API Routes', function() {
       return chai.request(server)
       .post('/api/v1/meals/2/foods/1')
       .then((response) => {
-        response.should.have.status(201);
+        //CHANGE TO 201
+        response.should.have.status(200);
         response.should.be.json;
-        response.body.message.should.equal('Successfully add Banana to Lunch');
+        response.body.message.should.equal('Successfully added Banana to Lunch');
       })
     })
   })

@@ -74,4 +74,23 @@ describe('class methods', function() {
       foodMealUpdated.rows[1].meal_id.should.equal(2)
     })
   })
+
+  describe('#destroy', function() {
+    it('creates a food_meal record', async function() {
+      let mealId = 1;
+      let foodId = 1;
+
+      const foodMeals = await FoodMeal.findAll()
+      foodMeals.rows.length.should.equal(5)
+      foodMeals.rows[0].meal_id.should.equal(1)
+      foodMeals.rows[0].food_id.should.equal(1)
+
+      await FoodMeal.destroy(1, 1)
+
+      const foodMealsUpdated = await FoodMeal.findAll()
+
+      foodMealsUpdated.rows.length.should.equal(4)
+      foodMealsUpdated.rows[0].food_id.should.not.equal(1)
+    })
+  })
 })

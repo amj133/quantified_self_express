@@ -51,7 +51,7 @@ describe('API Routes', function() {
         foods[0].calories.should.equal(140);
 
         foods[2].id.should.equal(3);
-        foods[2].name.should.equal('Advocado');
+        foods[2].name.should.equal('Avocado');
       })
     })
   })
@@ -201,12 +201,8 @@ describe('API Routes', function() {
   })
 
   describe("DELETE /api/v1/foods/:id", function() {
-    xit("deletes the food", function() {
-      chai.request(server)
-      .delete('/api/v1/foods/2')
-
-      pry = require("pryjs")
-      eval(pry.it)
+    it("deletes the food", async function() {
+      await chai.request(server).delete('/api/v1/foods/2')
 
       return chai.request(server)
       .get('/api/v1/foods')

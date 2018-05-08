@@ -12,7 +12,7 @@ exports.seed = function(knex, Promise) {
       ),
       await knex.raw(
         'INSERT INTO foods (name, calories, created_at, updated_at) VALUES (?, ?, ?, ?)',
-        ["Advocado", 340, new Date, new Date]
+        ["Avocado", 340, new Date, new Date]
       )
     ])
   })
